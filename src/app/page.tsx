@@ -1,69 +1,183 @@
-import Image from "next/image";
+import { FloralMotif } from "@/components/ui/FloralMotif";
+import { InvitationExperience } from "@/components/InvitationExperience";
+import { OrnamentalDivider } from "@/components/ui/OrnamentalDivider";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+
+const countdownUnits = ["ရက်", "နာရီ", "မိနစ်", "စက္ကန့်"];
+
+const receptionDetails = [
+  { order: "၀၁", label: "ရက်စွဲ", value: "ရက်စွဲ ဖြည့်သွင်းရန်" },
+  { order: "၀၂", label: "အချိန်", value: "အချိန် ဖြည့်သွင်းရန်" },
+  { order: "၀၃", label: "နေရာ", value: "နေရာ ဖြည့်သွင်းရန်" },
+];
+
+const galleryItems = ["ဓာတ်ပုံနေရာ ၁", "ဓာတ်ပုံနေရာ ၂", "ဓာတ်ပုံနေရာ ၃"];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+    <InvitationExperience>
+      <div className="site-shell">
+        <header className="site-header page-container" id="cover">
+          <a className="site-brand" href="#cover">
+            မင်္ဂလာဖိတ်စာ
+          </a>
+          <nav className="site-nav" aria-label="အဓိကလမ်းညွှန်">
+            <a href="#couple">နှစ်ဦးမိတ်ဆက်</a>
+            <a href="#details">ပွဲအသေးစိတ်</a>
+            <a href="#response">အကြောင်းပြန်ရန်</a>
+          </nav>
+        </header>
+
+      <main>
+        <section
+          className="content-section page-container couple-section"
+          id="couple"
+          aria-labelledby="couple-title"
+          tabIndex={-1}
+        >
+          <SectionHeading
+            eyebrow="နှစ်ဦးမိတ်ဆက်"
+            title="အမှတ်တရမိတ်ဆက်"
+            description="အမည်နှင့် မိတ်ဆက်စာသားများကို နောက်ပိုင်းတွင် ဖြည့်သွင်းပါမည်။"
+            id="couple-title"
+          />
+          <div className="couple-grid">
+            {["ပုံတူနေရာလွတ် ၁", "ပုံတူနေရာလွတ် ၂"].map((label, index) => (
+              <article className={`person-card person-card--${index + 1}`} key={label}>
+                <div
+                  className={`portrait-placeholder portrait-placeholder--${index + 1}`}
+                  aria-hidden="true"
+                >
+                  <span className="portrait-halo" />
+                  <FloralMotif className="portrait-floral" variant="corner" />
+                  <span className="portrait-silhouette" />
+                </div>
+                <p className="person-placeholder-label">အမည် ဖြည့်သွင်းရန်</p>
+                <p className="person-placeholder-copy">{label}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="message-section" aria-labelledby="message-title">
+          <div className="message-inner page-container">
+            <FloralMotif className="message-floral" variant="botanical" />
+            <SectionHeading
+              eyebrow="ဖိတ်ကြားလွှာ"
+              title="မေတ္တာဖြင့် ဖိတ်ကြားအပ်ပါသည်"
+              description="ဖိတ်ကြားစာသားကို ဤနေရာတွင် ဖြည့်သွင်းပါမည်။"
+              id="message-title"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+            <OrnamentalDivider />
+          </div>
+        </section>
+
+        <section
+          className="countdown-section content-section page-container"
+          aria-labelledby="countdown-title"
+        >
+          <SectionHeading
+            eyebrow="အချိန်ကို စောင့်မျှော်ခြင်း"
+            title="မင်္ဂလာပွဲနေ့အထိ"
+            description="ပွဲနေ့ကို သတ်မှတ်ပြီးနောက် ရေတွက်မှုကို ထည့်သွင်းပါမည်။"
+            id="countdown-title"
+          />
+          <div className="countdown-grid" aria-label="ရေတွက်မှု နေရာလွတ်">
+            {countdownUnits.map((unit) => (
+              <div className="countdown-unit" key={unit}>
+                <span className="countdown-value" aria-hidden="true">
+                  —
+                </span>
+                <span className="countdown-label">{unit}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className="details-section content-section"
+          id="details"
+          aria-labelledby="details-title"
+        >
+          <div className="page-container">
+            <SectionHeading
+              eyebrow="အခမ်းအနား အချက်အလက်များ"
+              title="မင်္ဂလာဧည့်ခံပွဲ"
+              description="နေ့ရက်၊ အချိန်နှင့် နေရာအချက်အလက်များကို ဖြည့်သွင်းပါမည်။"
+              id="details-title"
+            />
+            <dl className="details-grid">
+              {receptionDetails.map(({ label, value, order }) => (
+                <div className="detail-card" key={label}>
+                  <span className="detail-index" aria-hidden="true">
+                    {order}
+                  </span>
+                  <dt>{label}</dt>
+                  <dd>{value}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="directions-placeholder">
+              လမ်းညွှန်မြေပုံကို နေရာအတည်ပြုပြီးနောက် ထည့်သွင်းပါမည်။
+            </p>
+          </div>
+        </section>
+
+        <section
+          className="gallery-section content-section page-container"
+          aria-labelledby="gallery-title"
+        >
+          <SectionHeading
+            eyebrow="အမှတ်တရပုံရိပ်များ"
+            title="နှစ်ဦး၏ ဓာတ်ပုံများ"
+            description="ဓာတ်ပုံများကို ရရှိသည့်အခါ ဤနေရာတွင် ထည့်သွင်းပါမည်။"
+            id="gallery-title"
+          />
+          <div className="gallery-grid">
+            {galleryItems.map((item, index) => (
+              <div className={`gallery-placeholder gallery-placeholder--${index + 1}`} key={item}>
+                {index !== 1 && (
+                  <FloralMotif
+                    className="gallery-floral"
+                    variant={index === 0 ? "corner" : "botanical"}
+                  />
+                )}
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className="response-section content-section"
+          id="response"
+          aria-labelledby="response-title"
+        >
+          <div className="response-panel page-container">
+            <SectionHeading
+              eyebrow="တက်ရောက်မှု အကြောင်းပြန်ရန်"
+              title="အတူတကွ ပျော်ရွှင်စွာ ဆုံတွေ့ကြပါစို့"
+              description="အကြောင်းပြန်ပုံစံကို နောက်ပိုင်းတွင် ထည့်သွင်းပါမည်။"
+              id="response-title"
+            />
+            <FloralMotif className="response-wreath" variant="wreath" />
+          </div>
+        </section>
+
+        <footer className="closing-section" aria-labelledby="closing-title">
+          <FloralMotif className="closing-floral closing-floral--left" />
+          <div className="closing-content page-container">
+            <p className="closing-eyebrow">မေတ္တာဖြင့်</p>
+            <h2 id="closing-title">ဖိတ်ကြားအပ်ပါသည်</h2>
+            <p>အမှတ်တရနေ့ရက်တွင် အတူတကွ ဆုံတွေ့နိုင်ရန် မျှော်လင့်ပါသည်။</p>
+            <a className="back-to-top" href="#cover">
+              အပေါ်သို့ ပြန်သွားရန် ↑
+            </a>
+          </div>
+          <FloralMotif className="closing-floral closing-floral--right" />
+        </footer>
       </main>
-    </div>
+      </div>
+    </InvitationExperience>
   );
 }
